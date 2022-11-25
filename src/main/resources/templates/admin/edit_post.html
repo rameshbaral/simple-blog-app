@@ -6,21 +6,19 @@
 <div th:replace="admin/header :: header"></div>
 <body>
 <div th:replace="admin/header :: navbar"></div>
-<br/><br/>
+<br /><br />
 <div class="container">
   <div class="row col-md-8 offset-md-2">
     <div class="card">
       <div class="card-header">
-        <h2 class="text-center"> Create Post</h2>
+        <h2 class="text-center"> Edit Post</h2>
       </div>
       <div class="card-body">
         <form role="form" method="post" th:action="@{/admin/posts/{postId}(postId=${post.id})}" th:object="${post}">
-
-          <input type="hidden" th:field = "*{url}">
-          <input type="hidden" th:field = "*{createdOn}">
-
+          <input type="hidden" th:field="*{url}">
+          <input type="hidden" th:field="*{createdOn}">
           <div class="mb-3">
-            <label class="form-label"> Edit Post </label>
+            <label class="form-label"> Title </label>
             <input
                     type="text"
                     class="form-control"
@@ -71,11 +69,12 @@
   </div>
 
 </div>
-<br/><br/><br/><br/><br/>
+<br /><br /><br /><br /><br />
 <div th:replace="admin/footer :: footer"></div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
 <script>
   ClassicEditor
           .create( document.querySelector( '#content' ) )

@@ -61,7 +61,7 @@ public class PostController {
     }
 
     // handler method to handle edit post form submit request
-
+    @PostMapping("/admin/posts/{postId}")
     public String updatePost(@PathVariable("postId") Long postId,
                             @Valid @ModelAttribute("post") PostDto post,
                              BindingResult result,
@@ -73,7 +73,7 @@ public class PostController {
         }
         post.setId(postId);
         postService.updatePost(post);
-        return "redirect:admin/posts";
+        return "redirect:/admin/posts";
     }
 
     //returns post url in formatted form
