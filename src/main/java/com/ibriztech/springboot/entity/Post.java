@@ -22,9 +22,11 @@ public class Post {
     private String title;
     private String url;
 
-
-    @Column(nullable = false, length = 65535)
+    @Lob
+    @Column(nullable = false)
     private String content;
+
+    @Lob
     private String shortDescription;
 
     @CreationTimestamp

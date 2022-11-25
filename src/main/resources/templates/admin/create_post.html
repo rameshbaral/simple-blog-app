@@ -6,7 +6,7 @@
 <div th:replace="admin/header :: header"></div>
 <body>
 <div th:replace="admin/header :: navbar"></div>
-<br /><br />
+<br/><br/>
 <div class="container">
     <div class="row col-md-8 offset-md-2">
         <div class="card">
@@ -67,7 +67,20 @@
     </div>
 
 </div>
-<br /><br /><br /><br /><br />
+<br/><br/><br/><br/><br/>
 <div th:replace="admin/footer :: footer"></div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#content' ) )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 </body>
 </html>
