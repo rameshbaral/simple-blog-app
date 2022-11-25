@@ -26,4 +26,10 @@ public class PostServiceImpl implements PostService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void createPost(PostDto postDto) {
+        Post post = PostMappper.mapToPost(postDto);
+        postRepository.save(post);
+    }
+
 }

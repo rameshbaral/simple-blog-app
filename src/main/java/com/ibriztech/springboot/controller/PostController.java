@@ -5,8 +5,11 @@ import com.ibriztech.springboot.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class PostController {
@@ -23,5 +26,27 @@ public class PostController {
         List<PostDto> posts = postService.findAllPosts();
         model.addAttribute("posts", posts);
         return "/admin/posts";
+    }
+
+    //handler method to handle new post request
+    @GetMapping("/admin/newpost")
+    public String newPostForm(Model model){
+        PostDto postDto = new PostDto();
+        model.addAttribute("post", postDto);
+        return "admin/create_post";
+    }
+    //handler method to handle form submit request
+    @PostMapping("/admin/posts")
+    public String cratePost(@ModelAttribute PostDto postDto){
+        postDto.setUrl(getUrl(postDto.getTitle()));
+        postService.createPost(postDto);
+        return "redirect:/admin/posts";
+    }
+    //returns post url in formatted form
+    private static String getUrl(String postTitle){
+        String title = postTitle.trim().toLowerCase();
+        String url = title.replace("\\s+", "-");
+        url = url.replaceAll("[^A-Za-z0-9]", "-");
+        return url;
     }
 }
