@@ -5,6 +5,7 @@ import com.ibriztech.springboot.entity.Post;
 import com.ibriztech.springboot.mapper.PostMappper;
 import com.ibriztech.springboot.repository.PostRepository;
 import com.ibriztech.springboot.service.PostService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +48,13 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deletePost(Long postId) {
         postRepository.deleteById(postId);
+    }
+
+    @Override
+    @Transactional
+    public PostDto findPostByUrl(String postUrl) {
+        Post post = postRepository.findByUrl(postUrl).get();
+        return PostMappper.mapToPostDto(post);
     }
 
 }

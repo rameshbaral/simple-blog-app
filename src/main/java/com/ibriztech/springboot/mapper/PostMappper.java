@@ -10,6 +10,7 @@ public class PostMappper {
                 .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
+                .url(post.getUrl())
                 .shortDescription(post.getShortDescription())
                 .createdOn(post.getCreatedOn())
                 .updatedOn(post.getUpdatedOn())

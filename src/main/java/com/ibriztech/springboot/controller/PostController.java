@@ -1,6 +1,7 @@
 package com.ibriztech.springboot.controller;
 
 import com.ibriztech.springboot.dto.PostDto;
+import com.ibriztech.springboot.entity.Post;
 import com.ibriztech.springboot.service.PostService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -81,6 +82,13 @@ public class PostController {
     public String deletePost(@PathVariable("postId") Long postId){
         postService.deletePost(postId);
         return "redirect:/admin/posts";
+    }
+    //handler method to handle view post request
+    @GetMapping("/admin/posts/{postId}/view")
+    public String viewPost(@PathVariable("postId") Long postId, Model model){
+        PostDto postDto = postService.findPostById(postId);
+        model.addAttribute("post",postDto);
+        return "admin/view_post";
     }
 
     //returns post url in formatted form
