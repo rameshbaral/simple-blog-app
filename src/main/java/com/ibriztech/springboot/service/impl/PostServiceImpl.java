@@ -57,4 +57,13 @@ public class PostServiceImpl implements PostService {
         return PostMappper.mapToPostDto(post);
     }
 
+    @Override
+    public List<PostDto> searchPosts(String query) {
+        List<Post> posts = postRepository.searchPosts(query);
+        return posts.stream()
+                .map(PostMappper :: mapToPostDto)
+                .collect(Collectors.toList());
+
+    }
+
 }
