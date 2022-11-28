@@ -40,7 +40,7 @@
             <td th:text="${postStat.count}">1</td>
             <td th:text="${post.title}">post title</td>
             <td th:text="${post.shortDescription}">post short description</td>
-            <td th:text="${post.createdOn}">post created date</td>
+            <td th:text="${#temporals.format(post.createdOn,'dd MMM yyyy')}">post created date</td>
             <td>
                 <a th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}" class="btn btn-primary"> Edit</a>
                 <a th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}" class="btn btn-danger">Delete</a>

@@ -98,7 +98,6 @@ public class PostController {
     }
 
 
-
     //returns post url in formatted form
     private static String getUrl(String postTitle){
         String title = postTitle.trim().toLowerCase();
