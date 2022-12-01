@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -24,7 +25,7 @@ public class PostController {
     // create handler method, GET request and return model and view
     @GetMapping("/admin/posts")
     public String posts(Model model){
-        List<PostDto> posts = postService.findAllPosts();
+        List<PostDto> posts = postService.findPostByUser();
         model.addAttribute("posts", posts);
         return "/admin/posts";
     }
@@ -96,6 +97,21 @@ public class PostController {
         model.addAttribute("posts", posts);
         return "admin/posts";
     }
+    //handler method to handle excel generation
+    @GetMapping("/admin/generate-excel")
+    public String generateExcel(Model model) throws IOException {
+        List<PostDto> posts = postService.generateExcel();
+        model.addAttribute("posts", posts);
+        return "/admin/posts";
+    }
+    //handle method to read from the Excel file
+    @GetMapping("/admin/read-excel")
+    public String readFromExcel(Model model) throws IOException {
+        List<PostDto> posts = postService.readFromExcel();
+        model.addAttribute("posts",posts);
+        return "/admin/posts";
+    }
+
 
 
     //returns post url in formatted form
